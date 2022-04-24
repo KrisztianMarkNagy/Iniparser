@@ -45,7 +45,7 @@ var (
 		":semi-colon:",
 		":hashtag:",
 	}
-	ssc = []string{ // Special Sequences Counterpart
+	sscp = []string{ // Special Sequences Counterpart
 		";",
 		"#",
 	}
@@ -92,17 +92,17 @@ func normalize_lines_list(ilist []string) (olist []string) {
 		}
 		elem = normalize_line(elem)
 		if elem != "" && !strings.HasPrefix(elem, ";") && !strings.HasPrefix(elem, "#") {
-			olist = append(olist, preprocess(elem))
+			olist = append(
+				olist,
+				strings.ReplaceAll(
+					strings.ReplaceAll(
+						elem, ss[ss_semicolon], sscp[ss_semicolon],
+					),
+					ss[ss_hashtag], ssc[ss_hashtag],
+				)
+			)
 		}
 	}
 	return // Implicitly returns `olist`
 }
 
-func preprocess(iline string) string {
-	return strings.ReplaceAll(
-		strings.ReplaceAll(
-			iline, ss[ss_semicolon], ssc[ss_semicolon],
-		),
-		ss[ss_hashtag], ssc[ss_hashtag],
-	)
-}
