@@ -98,11 +98,10 @@ func normalize_lines_list(ilist []string) (olist []string) {
 					strings.ReplaceAll(
 						elem, ss[ss_semicolon], sscp[ss_semicolon],
 					),
-					ss[ss_hashtag], ssc[ss_hashtag],
-				)
+					ss[ss_hashtag], sscp[ss_hashtag],
+				),
 			)
 		}
 	}
 	return // Implicitly returns `olist`
 }
-
