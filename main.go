@@ -1,4 +1,4 @@
-package github.com/KrisztianMarkNagy/Iniparser
+package iniparser
 
 import (
 	"log"
