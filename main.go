@@ -16,7 +16,10 @@ func ParseConfig(config_file string) {
 	if config_file == "" {
 		config_file = "config.ini"
 	}
-	log.Default().Println("[Info] Config File:", config_file)
+	log.SetFlags(log.Ldate | log.Ltime | log.Lmicroseconds | log.Lshortfile | log.Lmsgprefix)
+	log.SetPrefix("\033[34m[INFO]\033[0m ")
+	log.Default().Println("Config File:", config_file)
+	log.SetPrefix("")
 	bytes_read, err := os.ReadFile(config_file)
 	if err != nil {
 		log.Fatalf("[Error] %v\n", err.Error())
